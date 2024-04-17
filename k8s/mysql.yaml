@@ -15,16 +15,16 @@ spec:
     spec:
       containers:
         - name: mysql
-          # 여러분의 mariadb image 주소를 입력해주세요.
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_41f0c529a67a
+          # 여러분의 mysql image 주소를 입력해주세요.
+          image: mysql
           env:
             - name: TZ
               value: Asia/Seoul
-            - name: MARIADB_ROOT_PASSWORD
+            - name: mysql_ROOT_PASSWORD
               value: root
-            - name: MARIADB_DATABASE
+            - name: mysql_DATABASE
               value: krampoline
-            - name: MARIADB_DISABLE_UPGRADE_BACKUP
+            - name: mysql_DISABLE_UPGRADE_BACKUP
               value: '1'
           volumeMounts:
             - mountPath: /var/lib/mysql
