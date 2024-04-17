@@ -1,0 +1,9 @@
+services:
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: harmonyIDE
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: user
+    ports:
+      - "3306:3306"
