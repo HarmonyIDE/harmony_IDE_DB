@@ -17,8 +17,6 @@ spec:
           env:
             - name: TZ
               value: Asia/Seoul
-            - name: DATABASE_URL
-              value: jdbc:mysql://mysql:3306/krampoline
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -29,6 +27,8 @@ spec:
                 secretKeyRef:
                   name: mysql-secret
                   key: database-name
+            - name: DATABASE_URL
+              value: "jdbc:mysql://mysql:3306/$(MYSQL_DATABASE)?useSSL=false&allowPublicKeyRetrieval=TRUE&user=root&password=$(MYSQL_ROOT_PASSWORD)"
           resources:
             requests:
               memory: 1Gi
