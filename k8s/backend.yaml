@@ -1,41 +1,66 @@
+
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
-  name: backend
+  name: mariadb
 spec:
+  serviceName: mariadb
   selector:
     matchLabels:
-      app: backend
+      app: mariadb
   template:
     metadata:
       labels:
-        app: backend
+        app: mariadb
     spec:
       containers:
-        - name: backend
-          # 여러분의 backend image 주소를 입력해주세요.
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_2f0bd8d10ac4
+        - name: mariadb
+          # 여러분의 mariadb image 주소를 입력해주세요.
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_7507979f9c02
           env:
             - name: TZ
               value: Asia/Seoul
-            - name: DATABASE_URL
-              value: jdbc:mysql://mysql:3306/krampoline
+            - name: MARIADB_ROOT_PASSWORD
+              value: root
+            - name: MARIADB_DATABASE
+              value: krampoline
+            - name: MARIADB_DISABLE_UPGRADE_BACKUP
+              value: '1'
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: data
+              subPath: mysql
+            - mountPath: /docker-entrypoint-initdb.d
+              name: init-db
           resources:
-            requests:
+            limits:
               memory: 1Gi
           readinessProbe:
-            httpGet:
-              path: /api/test
-              port: 8080
+            tcpSocket:
+              port: 3306
+      volumes:
+        - name: init-db
+          configMap:
+            name: init-db
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend
+  name: mariadb
 spec:
+  type: ClusterIP
+  clusterIP: None # Headless
   selector:
-    app: backend
+    app: mariadb
   ports:
-    - port: 8080
-      targetPort: 8080
+    - port: 3306
