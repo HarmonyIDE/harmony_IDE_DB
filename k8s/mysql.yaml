@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -15,15 +14,20 @@ spec:
     spec:
       containers:
         - name: mysql
-          # 여러분의 mysql image 주소를 입력해주세요.
-          image: mysql
+          image: mysql:latest
           env:
             - name: TZ
               value: Asia/Seoul
             - name: MYSQL_ROOT_PASSWORD
-              value: root1234
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: root-password
             - name: MYSQL_DATABASE
-              value: krampoline
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: database-name
             - name: MYSQL_DISABLE_UPGRADE_BACKUP
               value: '1'
           volumeMounts:
