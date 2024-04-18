@@ -21,7 +21,7 @@ spec:
             - name: TZ
               value: Asia/Seoul
             - name: MYSQL_ROOT_PASSWORD
-              value: root
+              value: root1234
             - name: MYSQL_DATABASE
               value: krampoline
             - name: MYSQL_DISABLE_UPGRADE_BACKUP
