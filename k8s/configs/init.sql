@@ -1,7 +1,6 @@
 
 CREATE SCHEMA IF NOT EXISTS `krampoline` DEFAULT CHARACTER SET utf8mb4;
 
-ALTER USER 'root'@'%' IDENTIFIED WITH caching_sha2_password BY 'root1234';
 GRANT ALL ON *.* TO 'root'@'%' IDENTIFIED BY 'root' WITH GRANT OPTION;
 GRANT ALL ON krampoline.* TO 'root'@'%';
 FLUSH PRIVILEGES;

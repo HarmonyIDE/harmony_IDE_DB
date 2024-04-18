@@ -18,16 +18,8 @@ spec:
           env:
             - name: TZ
               value: Asia/Seoul
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secret
-                  key: root-password
             - name: MYSQL_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secret
-                  key: database-name
+              value: krampoline
             - name: MYSQL_DISABLE_UPGRADE_BACKUP
               value: '1'
           volumeMounts:
