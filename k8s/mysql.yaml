@@ -20,11 +20,11 @@ spec:
           env:
             - name: TZ
               value: Asia/Seoul
-            - name: mysql_ROOT_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
               value: root
-            - name: mysql_DATABASE
+            - name: MYSQL_DATABASE
               value: krampoline
-            - name: mysql_DISABLE_UPGRADE_BACKUP
+            - name: MYSQL_DISABLE_UPGRADE_BACKUP
               value: '1'
           volumeMounts:
             - mountPath: /var/lib/mysql

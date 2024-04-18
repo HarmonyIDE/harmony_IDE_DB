@@ -4,9 +4,6 @@ resources:
   - frontend.yaml
   - mysql.yaml
   - nginx.yaml
-#  - mysql-configmap.yaml
-#  - mysql-services.yaml
-#  - mysql-statefulset.yaml
 configMapGenerator:
   - name: nginx
     files:
