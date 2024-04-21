@@ -13,15 +13,12 @@ spec:
     spec:
       containers:
         - name: backend
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_0515dbcf2dce
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_4ea490412baa
           env:
             - name: TZ
               value: Asia/Seoul
             - name: MYSQL_DATABASE
-              valueFrom:
-                secretKeyRef:
-                  name: mysql-secret
-                  key: database-name
+              value: krampoline
             - name: DATABASE_URL
               value: "jdbc:mysql://mysql:3306/$(MYSQL_DATABASE)?useSSL=false&allowPublicKeyRetrieval=TRUE&user=root"
           resources:
