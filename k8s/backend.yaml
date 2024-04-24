@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_ee6b8d65db19
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_ad7b3a83db90
           env:
             - name: TZ
               value: Asia/Seoul
@@ -21,6 +21,21 @@ spec:
               value: krampoline
             - name: DATABASE_URL
               value: "jdbc:mysql://mysql:3306/$(MYSQL_DATABASE)?useSSL=false&allowPublicKeyRetrieval=TRUE&user=root"
+            - name: GOOGLE_URI
+              valueFrom:
+                secretKeyRef:
+                  name: secret-keys
+                  key: google-uri
+            - name: KAKAO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: secret-keys
+                  key: kakao-uri
+            - name: NAVER_URI
+              valueFrom:
+                secretKeyRef:
+                  name: secret-keys
+                  key: naver-uri
           resources:
             requests:
               memory: 1Gi
