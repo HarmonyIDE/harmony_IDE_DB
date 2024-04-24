@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_ad7b3a83db90
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_cef5e4cb03a0
           env:
             - name: TZ
               value: Asia/Seoul
@@ -36,6 +36,11 @@ spec:
                 secretKeyRef:
                   name: secret-keys
                   key: naver-uri
+            - name: REDIRECT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: secret-keys
+                  key: redirect-uri
           resources:
             requests:
               memory: 1Gi
