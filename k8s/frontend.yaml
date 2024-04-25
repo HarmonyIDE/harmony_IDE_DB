@@ -15,13 +15,13 @@ spec:
       containers:
         - name: frontend
           # 여러분의 frontend image 주소를 입력해주세요.
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_7d745271726d
-          env:
-            - name: REACT_APP_WS_URL
-              valueFrom:
-                secretKeyRef:
-                  name: secret-keys
-                  key: ws_url
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_f94f1013b84d
+#          env:
+#            - name: REACT_APP_WS_URL
+#              valueFrom:
+#                secretKeyRef:
+#                  name: secret-keys
+#                  key: ws_url
 ---
 apiVersion: v1
 kind: Service

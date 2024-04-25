@@ -11,9 +11,16 @@ spec:
       labels:
         app: backend
     spec:
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: harmony-pvc
       containers:
         - name: backend
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_1b8680b40e97
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_a3b24f58c98f
+          volumeMounts:
+            - name: data
+              mountPath: /tmp/images
           env:
             - name: TZ
               value: Asia/Seoul
@@ -41,6 +48,12 @@ spec:
                 secretKeyRef:
                   name: secret-keys
                   key: redirect-uri
+            - name: CHAT_URL
+              valueFrom:
+                secretKeyRef:
+                  name: secret-keys
+                  key: chat-url
+
           resources:
             requests:
               memory: 1Gi
