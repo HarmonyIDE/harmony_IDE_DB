@@ -17,7 +17,7 @@ spec:
             claimName: harmony-pvc
       containers:
         - name: backend
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_222d4673bc31
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_81e151521c91
           volumeMounts:
             - name: data
               mountPath: /tmp/images
@@ -53,7 +53,11 @@ spec:
                 secretKeyRef:
                   name: secret-keys
                   key: chat-url
-
+            - name: GPT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: secret-keys
+                  key: gpt-key
           resources:
             requests:
               memory: 1Gi
