@@ -17,7 +17,7 @@ spec:
             claimName: harmony-pvc
       containers:
         - name: backend
-          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_111875833dd8
+          image: krmp-d2hub-idock.9rum.cc/dev-test/repo_f601759e61fe
           volumeMounts:
             - name: data
               mountPath: /tmp/images
